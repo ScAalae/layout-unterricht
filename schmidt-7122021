@@ -1,0 +1,97 @@
+package rechnerpackage;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+public class Rechnerfenster extends JFrame implements ActionListener {
+
+private JTextField ergebnisText, text2;
+private JPanel hauptPanel, northPanel, southPanel, westPanel, eastPanel, centerPanel;
+private JButton knopf1, knopf2, knopf3, knopf4, knopf5, knopf6;
+private JButton[] knopfArray = new JButton[10];
+
+
+//Konstruktor
+public Rechnerfenster(String titel) {
+super(titel);
+this.setSize(700, 700);
+hauptPanel = new JPanel(); //neues Panel wird erzeugt
+northPanel = new JPanel();
+southPanel = new JPanel();
+westPanel = new JPanel();
+eastPanel = new JPanel();
+centerPanel = new JPanel();
+
+ergebnisText = new JTextField("Hallo Welt!");
+text2 = new JTextField("Text2");
+knopf1 = new JButton("Knopf 1");
+knopf2 = new JButton("Knopf 2");
+knopf3 = new JButton("Knopf 3");
+knopf4 = new JButton("Knopf 4");
+knopf5 = new JButton("Knopf 5");
+knopf6 = new JButton("Knopf 6");
+
+for(int i = 0; i<knopfArray.length; i++) {
+knopfArray[i] = new JButton("Arrayknopf " +i);
+}
+
+// hauptPanel.setLayout(new FlowLayout() );
+// hauptPanel.setLayout(new BoxLayout(hauptPanel, BoxLayout.X_AXIS ));
+// hauptPanel.setLayout(new GridLayout( 2, 2 ));
+hauptPanel.setLayout(new BorderLayout());
+
+northPanel.setLayout(new FlowLayout());
+southPanel.setLayout(new GridLayout( 5 , 5));
+centerPanel.setLayout(new BorderLayout());
+westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
+
+southPanel.add(knopf1);
+southPanel.add(knopf2);
+southPanel.add(knopf3);
+southPanel.add(knopf4);
+
+for(int i = 0; i<knopfArray.length; i++) {
+westPanel.add(knopfArray[i]);
+}
+
+northPanel.add(knopf5);
+northPanel.add(ergebnisText); //Textfeld wird dem Panel zugeordnet
+
+centerPanel.add(knopf6, BorderLayout.EAST);
+centerPanel.add(text2, BorderLayout.NORTH);
+
+eastPanel.setBackground(Color.CYAN);
+westPanel.setBackground(Color.GREEN);
+centerPanel.setBackground(Color.DARK_GRAY);
+
+knopf1.addActionListener(this);
+knopf2.addActionListener(this);
+//... undsoweiter
+
+hauptPanel.add(northPanel, BorderLayout.NORTH);
+hauptPanel.add(southPanel, BorderLayout.SOUTH);
+hauptPanel.add(eastPanel, BorderLayout.EAST);
+hauptPanel.add(westPanel, BorderLayout.WEST);
+hauptPanel.add(centerPanel, BorderLayout.CENTER);
+
+this.add(hauptPanel);
+this.setVisible(true);
+}
+
+public void actionPerformed(ActionEvent e) {
+if(e.getSource() == this.knopf1) {
+ergebnisText.setText("Knopf 1");
+ergebnisText.setBackground(Color.blue);
+} else
+if(e.getSource() == this.knopf2) {
+
+ergebnisText.setText("Knopf 2");
+ergebnisText.setBackground(Color.red);
+}
+}
+}
