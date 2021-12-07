@@ -7,6 +7,11 @@ import java.awt.LayoutManager;
 
 public class BorderLayout implements LayoutManager {
 
+	public static final Object NORTH = null;
+	public static final Object WEST = null;
+	public static final Object EAST = null;
+	public static final Object SOUTH = null;
+
 	@Override
 	public void addLayoutComponent(String name, Component comp) {
 		// TODO Auto-generated method stub
